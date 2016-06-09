@@ -8,6 +8,7 @@ var service = server.listen(ip_server, function(request, response) {
     require('utils').dump(payload);//dump the whole request on console, you should expect custom headers to appear here
     casper.run(function() {
         response.statusCode = 200;
+        response.setHeader("Cookie", "custom server value");
         response.write(JSON.stringify(payload));
         console.log("response: ");
         require('utils').dump(response);
@@ -15,3 +16,4 @@ var service = server.listen(ip_server, function(request, response) {
     });
 });
 console.log('Server running at http://' + ip_server+'/');
+
